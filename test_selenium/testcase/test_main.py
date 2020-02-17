@@ -1,3 +1,4 @@
+from page.contact import Contact
 from test_selenium.page.main import Main
 
 
@@ -8,7 +9,7 @@ class TestMain:
 
     def test_add_member(self):
         self.main.add_member().add_member()
-        # assert "aaa" in self.main.get_message()
+        assert "测开" in self.main.goto_contact().get_member_name()
 
     def test_import_user(self):
         self.main.import_user("/Users/ouchou/Projects/Selenium/test_selenium/data/通讯录批量导入模板.xlsx")
