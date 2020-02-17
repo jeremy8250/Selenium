@@ -1,6 +1,5 @@
 from selenium import webdriver
 from selenium.webdriver import ActionChains
-from selenium.webdriver.common import by
 from selenium.webdriver.remote.webdriver import WebDriver
 
 
