@@ -1,4 +1,6 @@
 from selenium import webdriver
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common import by
 from selenium.webdriver.remote.webdriver import WebDriver
 
 
@@ -40,9 +42,14 @@ class BasePage:
     def find(self, by, locator=""):
         if isinstance(by, tuple):
             return self._driver.find_element(*by)
-            # *by作用:解析page页中定义的元组类型的定位符
+            # *by作用:解析page页中定义为元组类型的定位符
         else:
             return self._driver.find_element(by, locator)
+
+    def mouse_over_and_click(self, locator1, locator2):
+        # 鼠标悬停在元素1上，待元素2出现后再点击
+        ac = ActionChains(self._driver)
+        return ac.move_to_element(self.find(locator1)).move_to_element(self.find(locator2)).click().perform()
 
     def close(self):
         self._driver.quit()
