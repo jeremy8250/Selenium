@@ -30,3 +30,13 @@ class Materials(BasePage):
     def get_img_name(self):
         img_locator = (By.CSS_SELECTOR, '.material_picCard_cnt_pic')
         return self.find(img_locator).get_attribute("style")
+
+    def remove_image(self):
+        img_locator = (By.CSS_SELECTOR, '.material_picCard_cnt_pic')
+        remove_button_locator = (By.CSS_SELECTOR, '.ww_icon_WhiteSmallTrash')
+        OK_button_locator = (By.LINK_TEXT, '确定')
+        self.find(self._img_menu_locator).click()
+        # 图片子菜单
+        self.mouse_over_and_click(img_locator, remove_button_locator)
+        self.find(OK_button_locator).click()
+        return self
