@@ -1,4 +1,3 @@
-import time
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -15,10 +14,19 @@ class Materials(BasePage):
     def upload_images(self, path):
 
         self.find((self._img_menu_locator)).click()
+        # 图片子菜单
         self.find((self._add_img_locator)).click()
+        # 添加图片
         self.find((self._upload_button_locator)).send_keys(path)
+        # 使用sned_keys()方法上传图片
         cancel_button = (By.LINK_TEXT, '取消')
         WebDriverWait(self._driver, 20).until(expected_conditions.invisibility_of_element_located((cancel_button)))
-        # 显示等待取消按钮消失，再点击确定
+        # 上传时会有【取消】按钮显示
+        # 等待【取消】按钮消失，再点击确定
         self.find((self._done_button_locator)).click()
+        # 上传完成
         return self
+
+    def get_img_name(self):
+        img_locator = (By.CSS_SELECTOR, '.material_picCard_cnt_pic')
+        return self.find(img_locator).get_attribute("style")
