@@ -8,3 +8,4 @@ class TestManageTools:
 
     def test_upload_images(self):
         self.managetools.goto_material().upload_images("/Users/ouchou/Projects/Selenium/test_selenium/data/douyin.jpg")
+        assert "douyin.jpg" in self.managetools.goto_material().get_img_name()
