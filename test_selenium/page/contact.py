@@ -1,7 +1,6 @@
 import random
 from datetime import datetime
 
-import yaml
 from selenium.webdriver.common.by import By
 
 from test_selenium.page.base_page import BasePage
@@ -38,3 +37,7 @@ class Contact(BasePage):
         element.send_keys(position + str(datetime.now()))
         self.find((By.LINK_TEXT, '保存')).click()
         return self
+
+    def get_member_name(self):
+        member_locator = (By.CSS_SELECTOR, '#member_list td:nth-child(2)')
+        return self.find(member_locator).get_attribute("title")
